@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "strictNullChecks": true, // nullはエラー
+    "jsx": "react",
+    "newLine": "LF",
+    "lib": ["es2018", "dom"]
+  },
+  // 除外するfolder
+  "exclude": ["node_modules", "dist"]
+}
