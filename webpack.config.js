@@ -11,7 +11,7 @@ const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeM
 
 module.exports = {
   entry: {
-    'js/bandle': path.resolve(__dirname, 'src/ts/index.ts')
+    'js/bandle': path.resolve(__dirname, 'src/ts/index.tsx')
   },
   output: {
     filename: '[name].[hash].js',
