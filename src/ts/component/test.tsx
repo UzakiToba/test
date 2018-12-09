@@ -32,9 +32,9 @@ class Test extends React.Component<IMerge, {}> {
   }
 }
 
-const mapStateToProps = (state: IStore) => ({ store: state });
+const mapStateToProps = state => ({ store: state });
 
-const mapDispathToProps = (dispatch: Dispatch) => ({ dispatch });
+const mapDispathToProps = dispatch => ({ dispatch });
 
 const mergeProps = (store, dispatch, ownProps: IProps): IMerge =>
   Object.assign({}, store, dispatch, ownProps);

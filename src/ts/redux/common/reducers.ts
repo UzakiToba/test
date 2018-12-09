@@ -1,16 +1,9 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 
+import Model from './model';
 import * as actions from './actions';
 
-export interface ICommon {
-  test: string;
-}
-
-const initialNormarState: ICommon = {
-  test: 'hoge'
-};
-
-export default reducerWithInitialState(initialNormarState).case(
+export default reducerWithInitialState(new Model()).case(
   actions.testAction,
-  (state, payload) => ({ ...state, test: payload })
+  (state, payload) => state.testAction(payload)
 );

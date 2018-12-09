@@ -1,9 +1,15 @@
 import { combineReducers } from 'redux';
 
-import common, { ICommon } from './common/reducers';
+import common from './common/reducers';
+import commonModel from './common/model';
 
+// store全体
 export interface IStore {
-  common: ICommon;
+  common: commonModel;
+}
+
+export interface ICommon {
+  common: commonModel;
 }
 
 export default combineReducers({
