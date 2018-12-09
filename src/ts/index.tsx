@@ -14,7 +14,7 @@ import Test from './component/test';
 
 ReactDOM.render(
   <Provider store={store}>
-    <Test store={store} />
+    <Test />
   </Provider>,
   document.getElementById('app')
 );

@@ -2,11 +2,11 @@ import { reducerWithInitialState } from 'typescript-fsa-reducers';
 
 import * as actions from './actions';
 
-export interface ITest {
+export interface ICommon {
   test: string;
 }
 
-const initialNormarState: ITest = {
+const initialNormarState: ICommon = {
   test: 'hoge'
 };
 
