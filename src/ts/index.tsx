@@ -7,6 +7,9 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 // redux
 import { Provider } from 'react-redux';
+// PWA
+import * as OfflinePluginRuntime from 'offline-plugin/runtime';
+OfflinePluginRuntime.install();
 
 // store
 import { store } from './store';
