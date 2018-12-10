@@ -8,6 +8,8 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 // 足りてないパッケージをインストールする際にdevserverを停止しなくてもよくなる
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
+// フォルダをコピーする
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   module: {
@@ -69,6 +71,11 @@ module.exports = {
     // なおpugの場合title等使用できないoptionもある
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'src/index.pug')
-    })
+    }),
+    // フォルダーコピー
+    new CopyWebpackPlugin([{
+      from: path.resolve(__dirname, 'src/img'),
+      to: path.resolve(__dirname, 'dist/img')
+    }, ]),
   ]
 };

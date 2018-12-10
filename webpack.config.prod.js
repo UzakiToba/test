@@ -4,6 +4,13 @@ const merge = require('webpack-merge');
 // cssをcssとして書き出す
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+// 画像圧縮用パッケージ
+const imageminSvgo = require('imagemin-svgo');
+const imageminMozjpeg = require('imagemin-mozjpeg');
+const imageminPngquant = require('imagemin-pngquant');
+const imageminGifsicle = require('imagemin-gifsicle');
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
+
 const common = require('./webpack.config.js');
 
 module.exports = merge(common, {
@@ -44,6 +51,21 @@ module.exports = merge(common, {
     }),
     new MiniCssExtractPlugin({
       filename: 'css/common.[hash].css',
-    })
+    }),
+    new ImageminPlugin({
+      test: /\.(jpe?g|png|gif|svg)$/i,
+      plugins: [
+        imageminPngquant({
+          options: {
+            quality: 85 - 90
+          }
+        }),
+        imageminMozjpeg({
+          progressive: true
+        }),
+        imageminGifsicle(),
+        imageminSvgo()
+      ]
+    }),
   ]
 });
