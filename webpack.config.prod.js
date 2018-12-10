@@ -18,6 +18,10 @@ module.exports = merge(common, {
   },
   module: {
     rules: [{
+      test: /\.(ts|tsx)$/,
+      exclude: /node_modules/,
+      use: ['awesome-typescript-loader']
+    }, {
       test: /\.scss$/,
       use: [
         MiniCssExtractPlugin.loader,

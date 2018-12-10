@@ -14,16 +14,6 @@ module.exports = {
     // import忘れをエラーにする
     strictExportPresence: true,
     rules: [{
-      test: /\.(ts|tsx)$/,
-      exclude: /node_modules/,
-      use: [{
-        loader: 'awesome-typescript-loader',
-        options: {
-          // ForkTsCheckerWebpackPluginで型チェックを実行するため、ここではトランスパイルのみ実行する
-          transpileOnly: true
-        }
-      }]
-    }, {
       test: /\.pug$/,
       use: [{
         loader: 'pug-loader',

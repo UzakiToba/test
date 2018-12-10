@@ -12,6 +12,8 @@ module.exports = merge(common, {
   mode: 'development',
   devtool: 'inline-source-map',
   entry: [
+    'react-hot-loader/patch',
+    'webpack/hot/only-dev-server',
     path.resolve(__dirname, 'src/ts/index.tsx')
   ],
   output: {
@@ -21,8 +23,19 @@ module.exports = merge(common, {
   },
   module: {
     rules: [{
+      test: /\.(ts|tsx)$/,
+      exclude: /node_modules/,
+      use: [{
+        loader: 'awesome-typescript-loader',
+        options: {
+          // ForkTsCheckerWebpackPluginで型チェックを実行するため、ここではトランスパイルのみ実行する
+          transpileOnly: true
+        }
+      }]
+    }, {
       test: /\.scss$/,
       use: [
+        'css-hot-loader',
         MiniCssExtractPlugin.loader,
         {
           loader: 'css-loader',
@@ -42,11 +55,13 @@ module.exports = merge(common, {
     port: 3000,
     noInfo: true,
     open: true,
-    hot: false, // Hotを使用する場合true
+    hot: true, // Hotを使用する場合true
     historyApiFallback: true, // 404の時indexを返す,
     watchContentBase: true
   },
   plugins: [
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
     new ForkTsCheckerWebpackPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"development"'
