@@ -1,6 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
+// cssをcssとして書き出す
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const common = require('./webpack.config.js');
 
@@ -11,11 +13,33 @@ module.exports = merge(common, {
   },
   output: {
     filename: '[name].[hash].js',
+    publicPath: './',
     path: path.resolve(__dirname, 'dist')
+  },
+  module: {
+    rules: [{
+      test: /\.scss$/,
+      use: [
+        MiniCssExtractPlugin.loader,
+        {
+          loader: 'css-loader',
+          options: {
+            url: false,
+            sourceMap: true,
+            importLoaders: 3
+          }
+        },
+        'postcss-loader',
+        'sass-loader'
+      ]
+    }]
   },
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"production"'
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'css/common.[hash].css',
     })
   ]
 });

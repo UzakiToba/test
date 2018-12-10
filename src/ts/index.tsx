@@ -1,4 +1,6 @@
 import 'babel-polyfill';
+// scss
+import '../scss/common.scss';
 
 // react
 import * as React from 'react';

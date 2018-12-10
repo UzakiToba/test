@@ -3,6 +3,8 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 // 型チェックを別プロセスで実行する
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+// cssをcssとして書き出す
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const common = require('./webpack.config.js');
 
@@ -17,6 +19,24 @@ module.exports = merge(common, {
     publicPath: '/',
     path: path.resolve(__dirname, 'dist')
   },
+  module: {
+    rules: [{
+      test: /\.scss$/,
+      use: [
+        MiniCssExtractPlugin.loader,
+        {
+          loader: 'css-loader',
+          options: {
+            url: false,
+            sourceMap: true,
+            importLoaders: 3
+          }
+        },
+        'postcss-loader',
+        'sass-loader'
+      ]
+    }]
+  },
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
     port: 3000,
@@ -30,6 +50,9 @@ module.exports = merge(common, {
     new ForkTsCheckerWebpackPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"development"'
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'css/common.css',
     })
   ]
 });
