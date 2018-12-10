@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "develop": "webpack --config webpack.config.dev.js",
+    "develop": "webpack-dev-server --open --config webpack.config.dev.js",
     "build": "webpack --config webpack.config.prod.js"
   },
   "repository": {
@@ -47,6 +47,7 @@
     "typescript-fsa-reducers": "^1.1.0",
     "webpack": "^4.27.1",
     "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10",
     "webpack-merge": "^4.1.4"
   },
   "dependencies": {

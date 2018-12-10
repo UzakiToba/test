@@ -10,54 +10,40 @@ const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 
 module.exports = {
-  entry: {
-    'js/bandle': path.resolve(__dirname, 'src/ts/index.tsx')
-  },
-  output: {
-    filename: '[name].[hash].js',
-    path: path.resolve(__dirname, 'dist')
-  },
   module: {
     // import忘れをエラーにする
     strictExportPresence: true,
-    rules: [
-      {
+    rules: [{
         test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
-        use: [
-          {
-            loader: 'awesome-typescript-loader',
-            options: {
-              // ForkTsCheckerWebpackPluginで型チェックを実行するため、ここではトランスパイルのみ実行する
-              transpileOnly: true
-            }
+        use: [{
+          loader: 'awesome-typescript-loader',
+          options: {
+            // ForkTsCheckerWebpackPluginで型チェックを実行するため、ここではトランスパイルのみ実行する
+            transpileOnly: true
           }
-        ]
+        }]
       },
       {
         test: /\.pug$/,
-        use: [
-          {
-            loader: 'pug-loader',
-            options: {
-              pretty: true
-            }
+        use: [{
+          loader: 'pug-loader',
+          options: {
+            pretty: true
           }
-        ]
+        }]
       },
       {
         enforce: 'pre',
         test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
-        use: [
-          {
-            loader: 'tslint-loader',
-            options: {
-              typeCheck: true,
-              fix: true //エラーを自動で修正する
-            }
+        use: [{
+          loader: 'tslint-loader',
+          options: {
+            typeCheck: true,
+            fix: true //エラーを自動で修正する
           }
-        ]
+        }]
       }
     ]
   },
