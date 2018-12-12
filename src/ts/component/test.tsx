@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 
 // action
 import { testAction } from '../redux/common/actions';
@@ -19,10 +19,7 @@ class Test extends React.Component<IMerge, {}> {
     super(props);
     this.click = this.click.bind(this);
   }
-  private click() {
-    this.props.dispatch(testAction('hugahuga'));
-  }
-  render() {
+  public render() {
     return (
       <div>
         <span>{this.props.store.common.test}</span>
@@ -30,13 +27,16 @@ class Test extends React.Component<IMerge, {}> {
       </div>
     );
   }
+  private click() {
+    this.props.dispatch(testAction('hugahuga'));
+  }
 }
 
-const mapStateToProps = state => ({ store: state });
+const mapStateToProps = (state: IStore) => ({ store: state });
 
-const mapDispathToProps = dispatch => ({ dispatch });
+const mapDispathToProps = (dispatch: Dispatch) => ({ dispatch });
 
-const mergeProps = (store, dispatch, ownProps: IProps): IMerge =>
+const mergeProps = (store: any, dispatch: any, ownProps: IProps): IMerge =>
   Object.assign({}, store, dispatch, ownProps);
 
 export default connect(

@@ -1,0 +1,22 @@
+doctype html
+html(lang="ja")
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1")
+    meta(name="format-detection", content="telephone=no")
+    meta(name="copyright", content=`© ${htmlCfg.year} ${company.copy}.`)
+    if htmlCfg.description
+      meta(name="description", content=htmlCfg.description)
+    if htmlCfg.keywords
+      meta(name="keywords", content=htmlCfg.keywords)
+    if htmlCfg.canonical
+      link(rel="canonical", href=htmlCfg.canonical)
+    if htmlCfg.robots
+      meta(name="robots", content="noindex,nofollow,noarchive")
+    if htmlCfg.cache
+      meta(http-equiv="pragma", content="no-cache")
+      meta(http-equiv="cache-control", content="no-cache")
+      meta(http-equiv="expires", content="0")
+    block addHead
+  block body

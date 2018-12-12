@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "es5",
     "strictNullChecks": true, // nullはエラー
+    "noImplicitAny": true, // 暗黙のany禁止
     "jsx": "react",
     "newLine": "LF",
     "lib": ["es2018", "dom"]

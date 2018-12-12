@@ -1,5 +1,47 @@
 @charset "UTF-8";
 
-span {
-  color: rgb(0, 255, 55);
-}
+// mixin
+@import './setting/mixins';
+@import './setting/set';
+
+/* ======================================================
+  ■■■■■ NormalizeCss ■■■■■
+====================================================== */
+// ゴシック = gothic or 明朝 = mintyo or フォント指定なし = none
+// 追加的なノーマライズコードなし = 0 / あり = 1
+@import './base/normalize';
+@include normalize(gothic, 0);
+@import './extends/_extend_*.scss';
+// @import "../ts/component/**/_extend.scss";
+
+/* ======================================================
+  ■■■■■ Base Style ■■■■■
+====================================================== */
+// @import "./base/_font";
+@import './base/_base';
+
+/* ======================================================
+  ■■■■■ Layout Style ■■■■■
+====================================================== */
+@import './layout/_layout';
+
+//@import "../js/components/**/_layout.scss";
+
+/* ======================================================
+  ■■■■■ Module Style ■■■■■
+====================================================== */
+@import './module/_module';
+// @import "../ts/component/**/_style.scss";
+// @import "../ts/component/**/_style_*.scss";
+//@import "../js/component/**/_module.scss";
+
+//* ======================================================
+//  ■■■■■ Theme Style ■■■■■
+//====================================================== */
+// @import "./theme/_theme";
+
+/* ======================================================
+  ■■■■■ State Style ■■■■■
+====================================================== */
+@import './state/_state';
+//@import "../js/components/**/_state.scss";

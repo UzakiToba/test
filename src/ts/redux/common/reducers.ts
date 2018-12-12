@@ -1,7 +1,7 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 
-import Model from './model';
 import * as actions from './actions';
+import Model from './model';
 
 export default reducerWithInitialState(new Model()).case(
   actions.testAction,

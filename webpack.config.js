@@ -11,36 +11,51 @@ const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeM
 // フォルダをコピーする
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
+// JSConfig
+const htmlCfg = require('./config/htmlCfg');
+const company = require('./config/company');
+const projectCfg = require('./config/projectCfg');
+
 module.exports = {
   module: {
     // import忘れをエラーにする
     strictExportPresence: true,
-    rules: [{
-      test: /\.pug$/,
-      use: [{
-        loader: 'pug-loader',
-        options: {
-          pretty: true
-        }
-      }]
-    }, {
-      enforce: 'pre',
-      test: /\.(ts|tsx)$/,
-      exclude: /node_modules/,
-      use: [{
-        loader: 'tslint-loader',
-        options: {
-          typeCheck: true,
-          fix: true //エラーを自動で修正する
-        }
-      }]
-    }, {
-      enforce: 'pre',
-      test: /\.scss/,
-      use: [{
-        loader: 'import-glob-loader'
-      }]
-    }]
+    rules: [
+      {
+        test: /\.pug$/,
+        use: [
+          {
+            loader: 'pug-loader',
+            options: {
+              pretty: true
+            }
+          }
+        ]
+      },
+      {
+        enforce: 'pre',
+        test: /\.(ts|tsx)$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'tslint-loader',
+            options: {
+              typeCheck: true,
+              fix: true //エラーを自動で修正する
+            }
+          }
+        ]
+      },
+      {
+        enforce: 'pre',
+        test: /\.scss/,
+        use: [
+          {
+            loader: 'import-glob-loader'
+          }
+        ]
+      }
+    ]
   },
   // 共通コードをvenderに分離する
   optimization: {
@@ -70,12 +85,20 @@ module.exports = {
     // html出力 デフォルトでoutputのパスにindex.htmlを出力
     // なおpugの場合title等使用できないoptionもある
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'src/index.pug')
+      template: path.resolve(__dirname, 'src/index.pug'),
+      // pugにJSを変数として読み込み
+      templateParameters: {
+        htmlCfg,
+        company,
+        projectCfg
+      }
     }),
     // フォルダーコピー
-    new CopyWebpackPlugin([{
-      from: path.resolve(__dirname, 'src/img'),
-      to: path.resolve(__dirname, 'dist/img')
-    }, ]),
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, 'src/img'),
+        to: path.resolve(__dirname, 'dist/img')
+      }
+    ])
   ]
 };

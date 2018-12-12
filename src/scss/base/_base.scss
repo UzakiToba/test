@@ -1,0 +1,54 @@
+// 全ページ、モジュール共通のベースとなるスタイルを記述する
+
+html {
+  height: 100%;
+  font-size: 16px;
+}
+
+body {
+  height: 100%;
+  color: $baseFontColor;
+  background-color: $bgc;
+}
+
+button,
+input[type='button'],
+input[type='submit'] {
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+/* WAI-ARIA
+=========================================== */
+/* キーボードユーザー対応 */
+a,
+button,
+input,
+select,
+[role='link'],
+[role='button'] {
+  &:focus {
+    outline: 1px dotted rgba(#000, 0.3);
+    outline-offset: 0;
+  }
+}
+
+/* JSでのみでしかフォーカス出来ないアイテムはアウトラインを無効 */
+[tabindex='-1'] {
+  outline-width: 0;
+}
+
+/* button */
+[disabled],
+a:not([href]) {
+  opacity: 0.5;
+}
+
+/* アコーディオン用 */
+[role='tab'] {
+  cursor: pointer;
+}

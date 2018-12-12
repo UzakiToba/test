@@ -1,0 +1,131 @@
+// mixin集
+
+// after要素でfloatを解除
+// @include afterClearFix;
+@mixin afterClearFix {
+  &:after {
+    display: block;
+    content: '';
+    clear: both;
+  }
+}
+
+// ラジオボックス外部飛ばし
+// @include formOut;
+@mixin formOut {
+  position: absolute;
+  left: -100%;
+  opacity: 0;
+  z-index: -100;
+}
+
+// 注釈
+// @include caution($padding, $indent);
+@mixin caution($padding: 1em, $indent: -1em) {
+  padding-left: $padding;
+  text-indent: $indent;
+}
+
+// selectやinputのデフォルトスタイルをリセットする
+@mixin resetAppearance($flag) {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  @if $flag == 'ie' {
+    &::-ms-expand {
+      display: none;
+    }
+  }
+}
+
+// input[type="number"]の右ボタンを消す
+@mixin resetNumber {
+  -moz-appearance: textfield;
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+// backgroundの画像比率に合わせて高さ変更
+@mixin backgroundHeight($imageHeight, $imageWidth, $width) {
+  padding-top: $imageHeight / $imageWidth * $width;
+}
+// 要素数に応じてポジションを出力する
+@mixin imageChildPosition($count, $flag) {
+  $headingImageListCount: length($count);
+  $headingImageListP: $headingImageListCount - 1;
+  @for $i from 1 through $headingImageListCount {
+    &#{nth($count, $i)} {
+      $outPut: (100% / $headingImageListP) * ($i - 1);
+      @if $flag == 'after' {
+        &::after {
+          background-position: center $outPut;
+        }
+      } @else {
+        background-position: center $outPut;
+      }
+    }
+  }
+}
+
+// selectの矢印をデザインする
+// $afterWidth 矢印部分の幅,
+// $height 要素の高さ
+@mixin selectDecoration($afterWidth, $height) {
+  position: relative;
+  height: $height;
+  &::after {
+    content: '▼';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: $afterWidth;
+    height: 100%;
+    font-size: 0.8em;
+    line-height: $height;
+    text-align: center;
+    pointer-events: none;
+  }
+  > select {
+    height: 100%;
+    width: 100%;
+    padding-right: $afterWidth;
+    cursor: pointer;
+  }
+}
+
+// ブレイクポイントセット
+$width_pc: 960px;
+$width_tablet: 600px;
+// ブレイクポイントミックスイン
+// 960px以上のPCサイズ
+@mixin pc {
+  @media screen and (min-width: $width_pc) {
+    @content;
+  }
+}
+// ### 959px以下のタブレット
+@mixin tab {
+  @media screen and (max-width: ($width_pc - 1)) and (min-width: $width_tablet) {
+    @content;
+  }
+}
+// ### 959px以下のPC以外
+@mixin nonpc {
+  @media screen and (max-width: ($width_pc - 1)) {
+    @content;
+  }
+}
+@mixin nonsp {
+  @media screen and (min-width: $width_tablet) {
+    @content;
+  }
+}
+@mixin sp {
+  @media screen and (max-width: ($width_tablet - 1)) {
+    @content;
+  }
+}

@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-import common from './common/reducers';
 import commonModel from './common/model';
+import common from './common/reducers';
 
 // store全体
 export interface IStore {
