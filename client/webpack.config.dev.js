@@ -22,33 +22,38 @@ module.exports = merge(common, {
     path: path.resolve(__dirname, 'dist')
   },
   module: {
-    rules: [{
-      test: /\.(ts|tsx)$/,
-      exclude: /node_modules/,
-      use: [{
-        loader: 'awesome-typescript-loader',
-        options: {
-          // ForkTsCheckerWebpackPluginで型チェックを実行するため、ここではトランスパイルのみ実行する
-          transpileOnly: true
-        }
-      }]
-    }, {
-      test: /\.scss$/,
-      use: [
-        'css-hot-loader',
-        MiniCssExtractPlugin.loader,
-        {
-          loader: 'css-loader',
-          options: {
-            url: false,
-            sourceMap: true,
-            importLoaders: 3
+    rules: [
+      {
+        test: /\.(ts|tsx)$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'awesome-typescript-loader',
+            options: {
+              // ForkTsCheckerWebpackPluginで型チェックを実行するため、ここではトランスパイルのみ実行する
+              transpileOnly: true
+            }
           }
-        },
-        'postcss-loader',
-        'sass-loader'
-      ]
-    }]
+        ]
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          'css-hot-loader',
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              url: false,
+              sourceMap: true,
+              importLoaders: 3
+            }
+          },
+          'postcss-loader',
+          'sass-loader'
+        ]
+      }
+    ]
   },
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
@@ -67,7 +72,7 @@ module.exports = merge(common, {
       'process.env.NODE_ENV': '"development"'
     }),
     new MiniCssExtractPlugin({
-      filename: 'css/common.css',
+      filename: 'css/common.css'
     })
   ]
 });

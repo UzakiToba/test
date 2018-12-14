@@ -6,33 +6,34 @@ import { Dispatch } from 'redux';
 import { testAction } from '../redux/common/actions';
 
 // interface
-import { IStore } from '../redux/';
-
+import { IStore, ICommon, IWindow } from '../redux';
+type IStoreConnect = ICommon & IWindow;
 interface IProps {}
 interface IMerge extends IProps {
-  store: IStore;
+  store: IStoreConnect;
   dispatch: Dispatch;
 }
 
-class Test extends React.Component<IMerge, {}> {
+class Entry extends React.Component<IMerge, {}> {
   constructor(props: IMerge) {
     super(props);
-    this.click = this.click.bind(this);
+    console.log(props);
   }
   public render() {
     return (
       <div>
         <span>{this.props.store.common.test}</span>
-        <button onClick={this.click}>ボタン</button>
       </div>
     );
   }
-  private click() {
-    this.props.dispatch(testAction('hugahuga'));
-  }
 }
 
-const mapStateToProps = (state: IStore) => ({ store: state });
+const mapStateToProps = (state: IStore) => ({
+  store: {
+    common: state.common,
+    window: state.window
+  }
+});
 
 const mapDispathToProps = (dispatch: Dispatch) => ({ dispatch });
 
@@ -43,4 +44,4 @@ export default connect(
   mapStateToProps,
   mapDispathToProps,
   mergeProps
-)(Test);
+)(Entry);

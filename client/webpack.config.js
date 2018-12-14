@@ -12,9 +12,9 @@ const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeM
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // JSConfig
-const htmlCfg = require('./config/htmlCfg');
-const company = require('./config/company');
-const projectCfg = require('./config/projectCfg');
+const htmlCfg = require('../config/htmlCfg');
+const company = require('../config/company');
+const projectCfg = require('../config/projectCfg');
 
 module.exports = {
   module: {

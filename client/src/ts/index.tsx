@@ -18,9 +18,9 @@ import { hot } from 'react-hot-loader';
 import { store } from './store';
 
 // component
-import Test from './component/test';
+import Entry from './component/Entry';
 
-const App: React.SFC = () => <Test />;
+const App: React.SFC = () => <Entry />;
 
 const render = (Component: React.SFC): void => {
   ReactDOM.render(
