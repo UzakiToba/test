@@ -12,6 +12,7 @@ import GetWindowSizeDevice from '../../../asset/fn/GetWindowSizeDevice';
 import { setSiteState } from './redux/window/actions';
 
 // componsnt
+import Loading from './component/module/Loading/';
 import Router from './Router';
 
 // interface
@@ -61,7 +62,10 @@ export class Entry extends React.Component<IMerge, {}> {
   render() {
     return (
       <ConnectedRouter history={this.props.history}>
-        <Router />
+        <React.Fragment>
+          {this.props.store.common.isFetching && <Loading />}
+          <Router />
+        </React.Fragment>
       </ConnectedRouter>
     );
   }
