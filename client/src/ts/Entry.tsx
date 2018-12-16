@@ -5,18 +5,18 @@ import { History } from 'history';
 import { ConnectedRouter } from 'connected-react-router';
 
 // fs
-import GetWindowSize from '../../../../asset/fn/GetWindowSize';
-import GetWindowSizeDevice from '../../../../asset/fn/GetWindowSizeDevice';
+import GetWindowSize from '../../../asset/fn/GetWindowSize';
+import GetWindowSizeDevice from '../../../asset/fn/GetWindowSizeDevice';
 
 // action
-import { setSiteState } from '../redux/window/actions';
+import { setSiteState } from './redux/window/actions';
 
 // componsnt
-import router from '../Router/';
+import Router from './Router';
 
 // interface
-import { IStore, ICommon, IWindow } from '../redux';
-type IStoreCommon = IWindow & ICommon;
+import { IStore, ICommon, IWindow, IRouter } from './redux';
+type IStoreCommon = IWindow & ICommon & IRouter;
 interface IProps {
   history: History;
 }
@@ -29,9 +29,11 @@ export class Entry extends React.Component<IMerge, {}> {
   private timeout: any;
   constructor(props: IMerge) {
     super(props);
-    console.log(props);
     this.timeout = false;
     this.windowDimensions = this.windowDimensions.bind(this);
+  }
+  public shouldComponentUpdate(nextProps: IMerge, nextState: {}): boolean {
+    return true;
   }
   public componentDidMount() {
     window.addEventListener('resize', this.windowDimensions);
@@ -57,9 +59,10 @@ export class Entry extends React.Component<IMerge, {}> {
     }
   }
   render() {
-    console.log('render');
     return (
-      <ConnectedRouter history={this.props.history}>{router}</ConnectedRouter>
+      <ConnectedRouter history={this.props.history}>
+        <Router />
+      </ConnectedRouter>
     );
   }
 }
@@ -67,16 +70,15 @@ export class Entry extends React.Component<IMerge, {}> {
 const mapStateToProps = (state: IStore) => ({
   store: {
     common: state.common,
-    window: state.window
+    window: state.window,
+    router: state.router
   }
 });
 
 const mapDispathToProps = (dispatch: Dispatch) => ({ dispatch });
 
-const mergeProps = (store: any, dispatch: any, ownProps: IProps): IMerge => {
-  console.log(ownProps);
-  return Object.assign({}, store, dispatch, ownProps);
-};
+const mergeProps = (store: any, dispatch: any, ownProps: IProps): IMerge =>
+  Object.assign({}, store, dispatch, ownProps);
 const option = { areStatePropsEqual: () => false };
 export default connect(
   mapStateToProps,

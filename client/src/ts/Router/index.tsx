@@ -4,20 +4,18 @@ import { Route, Switch } from 'react-router';
 
 // component
 import Home from '../component/pages/Home/';
+import NoMatch from '../component/pages/NoMatch/';
 
-function hoge() {
-  return <div>hoge</div>;
-}
 function huga() {
   return <div>huga</div>;
 }
 
-const Router = (
+const Router = () => (
   <React.Fragment>
     <Switch>
       <Route exact={true} path="/" component={Home} />
       <Route path="/login" render={huga} />
-      {/*<Route component={NoMatch} />*/}
+      <Route component={NoMatch} />
     </Switch>
   </React.Fragment>
 );

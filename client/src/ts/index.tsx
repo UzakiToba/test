@@ -11,15 +11,12 @@ import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 OfflinePluginRuntime.install();
 
-// hot
-import { hot } from 'react-hot-loader';
-
 // store
 import { store, history } from './store';
 import rootReducer from './redux/';
 
 // component
-import Entry from './component/Entry';
+import Entry from './Entry';
 
 const render = () => {
   ReactDOM.render(
@@ -35,11 +32,11 @@ render();
 // Hot reloading
 if (module.hot) {
   // Reload components
-  module.hot.accept('./component/Entry', () => {
+  module.hot.accept('./Entry', () => {
     render();
   });
   // Reload reducers
-  module.hot.accept('./redux/index', () => {
+  module.hot.accept('./redux/', () => {
     store.replaceReducer(rootReducer(history));
   });
 }

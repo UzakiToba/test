@@ -1,5 +1,5 @@
 import * as React from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // config
 // const htmlCfg = require('../../../../../config/htmlCfg');
 
@@ -7,12 +7,12 @@ import * as React from 'react';
 
 interface IProps {}
 
-const Home: React.SFC<IProps> = () => {
+const NpMatch: React.SFC<IProps> = () => {
   return (
     <React.Fragment>
-      <p>home</p>
+      <p>NpMatch</p>
     </React.Fragment>
   );
 };
 
-export default Home;
+export default NpMatch;
