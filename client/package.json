@@ -11,10 +11,13 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.2.0",
+    "@types/history": "^4.7.2",
     "@types/node": "^10.12.12",
     "@types/react": "^16.7.13",
     "@types/react-dom": "^16.0.11",
     "@types/react-redux": "^6.0.11",
+    "@types/react-router": "^4.4.3",
+    "@types/react-router-dom": "^4.3.1",
     "@types/redux": "^3.6.0",
     "@types/webpack-env": "^1.13.6",
     "autoprefixer": "^9.4.2",
@@ -64,10 +67,14 @@
     "webpack-pwa-manifest": "^4.0.0"
   },
   "dependencies": {
+    "connected-react-router": "^6.0.0",
+    "history": "^4.7.2",
     "immutable": "^4.0.0-rc.12",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-redux": "^6.0.0",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
     "redux": "^4.0.1"
   }
 }

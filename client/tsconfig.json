@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "module": "es2015",
+    "moduleResolution": "node",
     "target": "es5",
     "strictNullChecks": true, // nullはエラー
     "noImplicitAny": true, // 暗黙のany禁止

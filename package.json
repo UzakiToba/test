@@ -15,5 +15,6 @@
   "homepage": "https://github.com/UzakiToba/test#readme",
   "devDependencies": {
     "@types/node": "^10.12.15"
-  }
+  },
+  "dependencies": {}
 }

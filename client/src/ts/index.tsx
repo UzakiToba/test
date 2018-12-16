@@ -15,24 +15,31 @@ OfflinePluginRuntime.install();
 import { hot } from 'react-hot-loader';
 
 // store
-import { store } from './store';
+import { store, history } from './store';
+import rootReducer from './redux/';
 
 // component
 import Entry from './component/Entry';
 
-const App: React.SFC = () => <Entry />;
-
-const render = (Component: React.SFC): void => {
+const render = () => {
   ReactDOM.render(
     <Provider store={store}>
-      <Component />
+      <Entry history={history} />
     </Provider>,
     document.getElementById('app')
   );
 };
 
+render();
+
+// Hot reloading
 if (module.hot) {
-  render(hot(module)(App));
-} else {
-  render(App);
+  // Reload components
+  module.hot.accept('./component/Entry', () => {
+    render();
+  });
+  // Reload reducers
+  module.hot.accept('./redux/index', () => {
+    store.replaceReducer(rootReducer(history));
+  });
 }

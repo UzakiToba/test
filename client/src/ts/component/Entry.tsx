@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
+import { History } from 'history';
+import { ConnectedRouter } from 'connected-react-router';
 
 // fs
 import GetWindowSize from '../../../../asset/fn/GetWindowSize';
@@ -9,19 +11,25 @@ import GetWindowSizeDevice from '../../../../asset/fn/GetWindowSizeDevice';
 // action
 import { setSiteState } from '../redux/window/actions';
 
+// componsnt
+import router from '../Router/';
+
 // interface
 import { IStore, ICommon, IWindow } from '../redux';
 type IStoreCommon = IWindow & ICommon;
-interface IProps {}
+interface IProps {
+  history: History;
+}
 interface IMerge extends IProps {
   store: IStoreCommon;
   dispatch: Dispatch;
 }
 
-class Entry extends React.Component<IMerge, {}> {
+export class Entry extends React.Component<IMerge, {}> {
   private timeout: any;
   constructor(props: IMerge) {
     super(props);
+    console.log(props);
     this.timeout = false;
     this.windowDimensions = this.windowDimensions.bind(this);
   }
@@ -49,10 +57,9 @@ class Entry extends React.Component<IMerge, {}> {
     }
   }
   render() {
+    console.log('render');
     return (
-      <div>
-        <span>test</span>
-      </div>
+      <ConnectedRouter history={this.props.history}>{router}</ConnectedRouter>
     );
   }
 }
@@ -66,11 +73,14 @@ const mapStateToProps = (state: IStore) => ({
 
 const mapDispathToProps = (dispatch: Dispatch) => ({ dispatch });
 
-const mergeProps = (store: any, dispatch: any, ownProps: IProps): IMerge =>
-  Object.assign({}, store, dispatch, ownProps);
-
+const mergeProps = (store: any, dispatch: any, ownProps: IProps): IMerge => {
+  console.log(ownProps);
+  return Object.assign({}, store, dispatch, ownProps);
+};
+const option = { areStatePropsEqual: () => false };
 export default connect(
   mapStateToProps,
   mapDispathToProps,
-  mergeProps
+  mergeProps,
+  option
 )(Entry);

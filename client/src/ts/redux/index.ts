@@ -1,4 +1,6 @@
 import { combineReducers } from 'redux';
+import { History } from 'history';
+import { RouterState, connectRouter } from 'connected-react-router';
 
 import commonModel from './common/model';
 import common from './common/reducers';
@@ -10,6 +12,7 @@ import window from './window/reducers';
 export interface IStore {
   common: commonModel;
   window: windowModel;
+  router: RouterState;
 }
 
 export interface ICommon {
@@ -18,8 +21,15 @@ export interface ICommon {
 export interface IWindow {
   window: windowModel;
 }
+export interface IRouter {
+  router: RouterState;
+}
 
-export default combineReducers({
-  common,
-  window
-});
+const rootReducer = (history: History) =>
+  combineReducers({
+    common,
+    window,
+    router: connectRouter(history)
+  });
+
+export default rootReducer;
