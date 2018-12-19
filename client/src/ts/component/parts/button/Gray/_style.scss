@@ -1,0 +1,13 @@
+.partsButton-glay {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  text-shadow: 1px 1px 0 #fff;
+  background-color: #dddddd;
+  background-image: linear-gradient(to bottom, #f1f1f1, #dddddd);
+  border: solid 1px #c4c4c4;
+  box-shadow: 3px 3px 3px 0 rgba(#000, .3);
+  border-radius: $baseR;
+}
