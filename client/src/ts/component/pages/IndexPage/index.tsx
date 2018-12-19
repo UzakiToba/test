@@ -4,15 +4,17 @@ import { Link } from 'react-router-dom';
 // const htmlCfg = require('../../../../../config/htmlCfg');
 
 // component
+import PartsButtonGlay from '../../parts/button/Gray/';
 
 interface IProps {}
 
-const NoMatch: React.SFC<IProps> = () => {
+const IndexPage: React.SFC<IProps> = () => {
   return (
     <React.Fragment>
-      <p>NoMatch</p>
+      <p>IndexPage</p>
+      <PartsButtonGlay.Link to="/huga" text="huga" />
     </React.Fragment>
   );
 };
 
-export default NoMatch;
+export default IndexPage;

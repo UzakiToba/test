@@ -7,12 +7,12 @@ import { Link } from 'react-router-dom';
 
 interface IProps {}
 
-const NoMatch: React.SFC<IProps> = () => {
+const NoRegist: React.SFC<IProps> = () => {
   return (
     <React.Fragment>
-      <p>NoMatch</p>
+      <p>NoRegist 403</p>
     </React.Fragment>
   );
 };
 
-export default NoMatch;
+export default NoRegist;

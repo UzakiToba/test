@@ -7,12 +7,12 @@ import { Link } from 'react-router-dom';
 
 interface IProps {}
 
-const NoMatch: React.SFC<IProps> = () => {
+const Login: React.SFC<IProps> = () => {
   return (
     <React.Fragment>
-      <p>NoMatch</p>
+      <p>Login</p>
     </React.Fragment>
   );
 };
 
-export default NoMatch;
+export default Login;
