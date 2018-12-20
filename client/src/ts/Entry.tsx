@@ -65,6 +65,7 @@ export class Entry extends React.Component<IMerge, {}> {
     }
   }
   render() {
+    console.log('render');
     return (
       <ConnectedRouter history={this.props.history}>
         <React.Fragment>

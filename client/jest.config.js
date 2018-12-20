@@ -1,8 +1,7 @@
 module.exports = {
   roots: ['<rootDir>/src/ts/'],
   transform: {
-    '(/__tests__/.*|(\\.|/)(test|spec))\\.(ts|tsx)$':
-      '<rootDir>/node_modules/ts-jest'
+    '(/__tests__/.*|(\\.|/)(test|spec))\\.(ts|tsx)$': '<rootDir>/node_modules/ts-jest'
   },
   globals: {
     'ts-jest': {
