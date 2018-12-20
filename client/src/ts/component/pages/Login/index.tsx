@@ -13,6 +13,7 @@ const Head = () => (
 );
 
 // component
+import FormLogin from '../../form/Login/';
 
 interface IProps {}
 
@@ -21,6 +22,7 @@ const Login: React.SFC<IProps> = () => {
     <React.Fragment>
       <Head />
       <p>Login</p>
+      <FormLogin />
     </React.Fragment>
   );
 };
