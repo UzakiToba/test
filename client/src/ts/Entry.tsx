@@ -17,12 +17,11 @@ import Router from './Router';
 
 // interface
 import { IStore, ICommon, IWindow, IRouter } from './redux';
-type IStoreCommon = IWindow & ICommon & IRouter;
 interface IProps {
   history: History;
 }
 interface IMerge extends IProps {
-  store: IStoreCommon;
+  store: IWindow & ICommon & IRouter;
   dispatch: Dispatch;
 }
 
@@ -34,7 +33,13 @@ export class Entry extends React.Component<IMerge, {}> {
     this.windowDimensions = this.windowDimensions.bind(this);
   }
   public shouldComponentUpdate(nextProps: IMerge, nextState: {}): boolean {
-    return true;
+    return (
+      // urlの変更検出
+      nextProps.store.router.location.pathname !==
+        this.props.store.router.location.pathname ||
+      // fetchの変更
+      nextProps.store.common.isFetching !== this.props.store.common.isFetching
+    );
   }
   public componentDidMount() {
     window.addEventListener('resize', this.windowDimensions);

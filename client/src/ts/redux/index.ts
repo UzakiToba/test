@@ -11,14 +11,6 @@ import window from './window/reducers';
 import userModel from './user/model';
 import user from './user/reducers';
 
-// store全体
-export interface IStore {
-  common: commonModel;
-  window: windowModel;
-  router: RouterState;
-  user: userModel;
-}
-
 export interface ICommon {
   common: commonModel;
 }
@@ -31,6 +23,8 @@ export interface IRouter {
 export interface IUser {
   user: userModel;
 }
+
+export type IStore = ICommon & IWindow & IRouter & IUser;
 
 const rootReducer = (history: History) =>
   combineReducers({

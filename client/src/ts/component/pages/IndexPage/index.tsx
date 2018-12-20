@@ -22,7 +22,6 @@ const IndexPage: React.SFC<IProps> = () => {
     <React.Fragment>
       <Head />
       <p>IndexPage</p>
-      <PartsButtonGlay.Link to="/huga" text="huga" />
     </React.Fragment>
   );
 };

@@ -7,10 +7,9 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import NoMatch from '../component/pages/NoMatch/';
 
 import { IStore, IUser, IRouter } from '../redux/';
-type IStoreConnect = IUser & IRouter;
 interface IProps {}
 interface IMerge extends IProps {
-  store: IStoreConnect;
+  store: IUser & IRouter;
   dispatch: Dispatch;
 }
 
@@ -28,6 +27,7 @@ class Auth extends React.Component<IMerge, {}> {
       }
       return paths;
     })();
+    this.noMatch = this.noMatch.bind(this);
   }
   public shouldComponentUpdate(nextProps: IMerge): boolean {
     // tokenとurlが変更したときだけrender動かす
@@ -37,6 +37,9 @@ class Auth extends React.Component<IMerge, {}> {
       next.router.location.pathname !== prev.router.location.pathname ||
       next.user.token !== prev.user.token
     );
+  }
+  private noMatch() {
+    return <Redirect to="/404" />;
   }
   private returnElement() {
     const { router } = this.props.store;
@@ -52,7 +55,7 @@ class Auth extends React.Component<IMerge, {}> {
     // ページが存在していない場合
     return (
       <Switch>
-        <Route component={NoMatch} />
+        <Route render={this.noMatch} />
       </Switch>
     );
   }
@@ -74,5 +77,6 @@ const mergeProps = (store: any, dispatch: any, ownProps: IProps): IMerge =>
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-  mergeProps
+  mergeProps,
+  { areStatePropsEqual: () => false }
 )(Auth);
