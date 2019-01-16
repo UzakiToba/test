@@ -16,7 +16,29 @@ class FormLogin extends React.Component<IMerge, IState> {
     console.log(props);
   }
   render() {
-    return <div>hoge</div>;
+    return (
+      <form>
+        <dl>
+          <div>
+            <dt>
+              <label htmlFor="formLogin_userInput">ユーザー名</label>
+            </dt>
+            <dd>
+              <input id="formLogin_userInput" type="text" />
+            </dd>
+          </div>
+          <div>
+            <dt>
+              <label htmlFor="formLogin_passInput">パスワード</label>
+            </dt>
+            <dd>
+              <input id="formLogin_passInput" type="password" />
+            </dd>
+          </div>
+        </dl>
+        <input type="submit" value="送信" />
+      </form>
+    );
   }
 }
 

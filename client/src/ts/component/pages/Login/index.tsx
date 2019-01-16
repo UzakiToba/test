@@ -21,7 +21,6 @@ const Login: React.SFC<IProps> = () => {
   return (
     <React.Fragment>
       <Head />
-      <p>Login</p>
       <FormLogin />
     </React.Fragment>
   );

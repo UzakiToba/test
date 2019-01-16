@@ -5,7 +5,7 @@ export interface IUser {
 }
 
 export const InitState: Record.Factory<IUser> = Record({
-  token: false
+  token: true
 });
 
 export default class UserModel extends InitState implements IUser {
