@@ -9,6 +9,7 @@ import Wrapper from '../component/layout/Wrapper/';
 
 import IndexPage from '../component/pages/IndexPage/';
 import Login from '../component/pages/Login/';
+import Regist from '../component/pages/Regist/';
 import Home from '../component/pages/Home/';
 import NoMatch from '../component/pages/NoMatch/';
 import NoRegist from '../component/pages/NoRegist/';
@@ -32,6 +33,7 @@ class Router extends React.PureComponent<{}, {}> {
           <Switch>
             <Route exact path="/" component={IndexPage} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/Regist" component={Regist} />
             <Route exact path="/404" component={NoMatch} />
             <Route exact path="/403" component={NoRegist} />
             <Auth>

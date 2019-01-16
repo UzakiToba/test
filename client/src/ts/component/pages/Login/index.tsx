@@ -21,7 +21,10 @@ const Login: React.SFC<IProps> = () => {
   return (
     <React.Fragment>
       <Head />
-      <FormLogin />
+      <div>
+        <FormLogin />
+        <Link to="/regist">新規登録</Link>
+      </div>
     </React.Fragment>
   );
 };
