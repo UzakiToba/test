@@ -13,7 +13,6 @@ interface IState {}
 class FormLogin extends React.Component<IMerge, IState> {
   constructor(props: IMerge) {
     super(props);
-    console.log(props);
   }
   render() {
     return (

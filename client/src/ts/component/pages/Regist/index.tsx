@@ -4,6 +4,9 @@ import { Helmet } from 'react-helmet';
 // config
 const htmlCfg = require('../../../../../../config/htmlCfg');
 
+// component
+import FormRegist from '../../form/Regist/';
+
 interface IProps {}
 
 const Head = () => {
@@ -20,7 +23,7 @@ const Regist: React.SFC<IProps> = () => {
   return (
     <React.Fragment>
       <Head />
-      <div>regist</div>
+      <FormRegist />
     </React.Fragment>
   );
 };

@@ -49,14 +49,14 @@ const mapStateToProps = (state: IStore) => ({
   }
 });
 
-const mapDispathToProps = (dispatch: Dispatch) => ({ dispatch });
+const mapDispatchToProps = (dispatch: Dispatch) => ({ dispatch });
 
 const mergeProps = (store: any, dispatch: any, ownProps: IProps): IMerge =>
   Object.assign({}, store, dispatch, ownProps);
 const option = { areStatePropsEqual: () => false };
 export default connect(
   mapStateToProps,
-  mapDispathToProps,
+  mapDispatchToProps,
   mergeProps,
   option
 )(Tempalate);
